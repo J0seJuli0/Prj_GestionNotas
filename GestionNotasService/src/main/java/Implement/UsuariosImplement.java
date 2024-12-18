@@ -48,4 +48,26 @@ public class UsuariosImplement implements UsuarioInterface{
 		}
 		return false;
 	}
+
+	public List<Usuarios> ListarUsuarios() {
+		String sql = "SELECT * FROM usuarios";
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Usuarios> listado = new ArrayList<Usuarios>();
+		try {
+			ps=ClassConnection.conectarMySQL().prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				Usuarios clsusu = new Usuarios();
+				clsusu.setIdUsuario(rs.getInt(1));
+				clsusu.setUsuario(rs.getString(2));
+				clsusu.setTipoUsuario(rs.getString(4));
+				listado.add(clsusu);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return listado;
+	}
+
 }
