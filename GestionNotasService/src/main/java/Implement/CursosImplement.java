@@ -10,8 +10,6 @@ import Connection.ClassConnection;
 import Interface.CursosInterface;
 import Model.Cursos;
 import Model.Docentes;
-import Model.Estudiantes;
-import Model.Padre;
 
 public class CursosImplement implements CursosInterface{
 

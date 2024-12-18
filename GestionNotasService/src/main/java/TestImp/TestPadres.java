@@ -14,24 +14,7 @@ public class TestPadres {
 		PadreImplement impl = new PadreImplement();
 
 		
-		// TEST REGISTRAR
-		 Padre padre = new Padre();
-	        padre.setNombre("Perez");
-	        padre.setDni("146524");
-	        padre.setTelefono("98765421");
-	        padre.setCorreo("juan@gmail.com");
-
-	        // Configurar la contraseña del usuario
-	        String passBc = "123";
-
-	        // Llamar al método para registrar al padre y al usuario
-	        try {
-	            impl.RegistrarPadres(padre, passBc);
-	            System.out.println("Prueba exitosa: El registro se completó correctamente.");
-	        } catch (Exception e) {
-	            System.out.println("Prueba fallida: " + e.getMessage());
-	        }
-
+		
 
 		/*TEST ACTUALIZAR 
 		 Reportes reportesActualizar = new Reportes();

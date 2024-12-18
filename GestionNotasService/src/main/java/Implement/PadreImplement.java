@@ -1,69 +1,34 @@
 package Implement;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import Connection.ClassConnection;
 import Interface.PadresInterface;
 import Model.Padre;
 
 public class PadreImplement implements PadresInterface{
-
-	public void RegistrarPadres(Padre pad, String contrasenia) {
-		String sqlPadres = "INSERT INTO padres VALUES(null, ?, ?, ?, ?)";
-		String sqlUsuario = "INSERT INTO usuarios VALUES(null, ?, ?, ?)";
-		
-		PreparedStatement psPadres = null;
-		PreparedStatement psUsu = null;
+	
+	public void RegistrarPadres(Padre pad) {
+		String sql = "INSERT INTO padres VALUES(null, ?, ?, ?, ?)";
+		PreparedStatement ps= null;
 		try {
-			Connection cnn = ClassConnection.conectarMySQL();
-			cnn.setAutoCommit(false);
-			
-			//INSERTAMOS EN LA TABLA PADRES
-			psPadres = cnn.prepareStatement(sqlPadres);
-			psPadres.setString(1, pad.getNombre());
-			psPadres.setString(2, pad.getDni());
-			psPadres.setString(3, pad.getTelefono());
-			psPadres.setString(4, pad.getCorreo());
-			psPadres.executeUpdate();
-			
-			//ENCRIPTAMOS LA CONTRASENIA
-			String passBc = BCrypt.hashpw(contrasenia, BCrypt.gensalt());
-			
-			//INSERTAMOS EN LA TABLA USUARIO
-			psUsu = cnn.prepareStatement(sqlUsuario);
-			psUsu.setString(1, pad.getCorreo());
-			psUsu.setString(2, passBc);
-			psUsu.setString(3, "padre");
-			psUsu.executeUpdate();
-			
-			cnn.commit();
-			System.out.println("Registrado correctamente.");
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			try {
-				if (psPadres != null) {
-					psPadres.getConnection().rollback();
-				}
-				System.out.println("A ocurrido un error.");
-			} catch (SQLException e2) {
-				e2.printStackTrace();
+			ps = ClassConnection.conectarMySQL().prepareStatement(sql);
+			ps.setString(1, pad.getNombre());
+			ps.setString(2, pad.getDni());
+			ps.setString(3, pad.getTelefono());
+			ps.setString(4, pad.getCorreo());
+			ps.executeUpdate();
+			int y=ps.executeUpdate();
+			if (y>0) {
+				System.out.println("Dato registrado correctamente.");
 			}
-		} finally {
-			try {
-				if (psPadres !=null)psPadres.close();
-				if (psUsu != null) psUsu.close();
-			} catch (SQLException close) {
-				close.spliterator();
+		}catch (SQLException e) {
+				e.printStackTrace();
 			}
-		}
 		
 	}
 

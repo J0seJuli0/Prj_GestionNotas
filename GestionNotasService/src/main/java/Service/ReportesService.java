@@ -85,7 +85,7 @@ public class ReportesService {
 	@Path("/BuscarReporte/{cod}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response BuscarCliente(@PathParam("cod") int cod){
+	public Response BuscarReporte(@PathParam("cod") int cod){
 		Reportes repo = new Reportes();
 		repo.setIdReporte(cod);
 		int idCod = 0;

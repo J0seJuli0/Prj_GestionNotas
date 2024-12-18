@@ -1,6 +1,8 @@
 package Implement;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +10,7 @@ import Connection.ClassConnection;
 import Interface.CalificacionesInterface;
 import Model.Calificaciones;
 import Model.Cursos;
-import Model.Docentes;
 import Model.Estudiantes;
-import Model.Padre;
 
 public class CalificacionesImplement implements CalificacionesInterface {
 
