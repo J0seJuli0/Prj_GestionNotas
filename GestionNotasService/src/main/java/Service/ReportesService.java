@@ -2,7 +2,6 @@ package Service;
 
 import java.util.List;
 
-import javax.print.attribute.standard.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -81,4 +80,29 @@ public class ReportesService {
 			return Response.ok(newList).build();
 		}
 	}
+	
+	@GET
+	@Path("/BuscarReporte/{cod}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response BuscarCliente(@PathParam("cod") int cod){
+		Reportes repo = new Reportes();
+		repo.setIdReporte(cod);
+		int idCod = 0;
+		List<Reportes> list = impl.ListarReportes();
+		for (Reportes listar:list) {
+			if (listar.getIdReporte() == repo.getIdReporte()) {
+				idCod = listar.getIdReporte();
+			}
+		}
+		if (idCod ==0) {
+			return Response.status(Status.BAD_REQUEST).entity("Reporte no encontrado").build();
+		}else {
+			Reportes repos = impl.BuscarReportes(repo);
+			return Response.ok(repos).build();
+		}
+	}
+	
+	
+	
 }
