@@ -11,7 +11,7 @@ public class TestUsuarios {
 		// TODO Auto-generated method stub
 		UsuariosImplement impl = new UsuariosImplement();
 		
-		/*TEST LISTAR
+		/*TEST LISTAR*/
 		List<Usuarios> usu = impl.ListarUsuarios();
 		
 		if (usu!= null && !usu.isEmpty()) {
@@ -23,7 +23,7 @@ public class TestUsuarios {
 			System.out.println("No se encontraron usuarios.");
 		}
 		
-		*/
+		
 		
 		/* TEST REGISTRAR
 		Usuarios nuevoUsuario = new Usuarios();
@@ -79,7 +79,7 @@ public class TestUsuarios {
 	        }
     	*/
 		
-		/*TEST LOGUEO*/
+		/*TEST LOGUEO
 		String usuario = "juan@example.com"; // Reemplaza con un usuario que exista en la base de datos
         String contrasena = "123";    // Reemplaza con la contraseña que quieras probar
         
@@ -93,6 +93,6 @@ public class TestUsuarios {
         } else {
             System.out.println("Error: Las credenciales no son correctas.");
         }
-        
+        */
     }
 }
