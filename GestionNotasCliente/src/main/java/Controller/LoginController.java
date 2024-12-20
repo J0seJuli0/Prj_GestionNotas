@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
 	    boolean credencialesCorrectas = loginDao.IniciarSession(usuario, contrasena);
 	    
 	    if (credencialesCorrectas) {
-	        response.sendRedirect("index.jsp");
+	        response.sendRedirect("clientes.jsp");
 	    } else {
 	        response.sendRedirect("login.jsp?error=1");
 	    }
