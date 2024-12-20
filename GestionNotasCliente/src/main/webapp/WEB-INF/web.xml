@@ -4,4 +4,44 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>LoginController</servlet-name>
+  	<display-name>LoginController</display-name>
+  	<description></description>
+  	<servlet-class>Controller.LoginController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EstudianteController</servlet-name>
+  	<display-name>EstudianteController</display-name>
+  	<description></description>
+  	<servlet-class>Controller.EstudianteController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EstudianteActualizar</servlet-name>
+  	<display-name>EstudianteActualizar</display-name>
+  	<description></description>
+  	<servlet-class>Controller.EstudianteActualizar</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EstudianteRegistro</servlet-name>
+  	<display-name>EstudianteRegistro</display-name>
+  	<description></description>
+  	<servlet-class>Controller.EstudianteRegistro</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>LoginController</servlet-name>
+  	<url-pattern>/LoginController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EstudianteController</servlet-name>
+  	<url-pattern>/EstudianteController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EstudianteActualizar</servlet-name>
+  	<url-pattern>/EstudianteActualizar</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EstudianteRegistro</servlet-name>
+  	<url-pattern>/EstudianteRegistro</url-pattern>
+  </servlet-mapping>
 </web-app>

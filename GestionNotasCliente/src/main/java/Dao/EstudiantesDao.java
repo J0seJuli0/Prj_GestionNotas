@@ -29,16 +29,16 @@ public class EstudiantesDao {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-            webTarget = cliente.target(BASE_URL + "/ListadoEstudiantes");
+            webTarget = cliente.target("http://localhost:8080/GestionNotasService/Estudiantes/ModuloEstudiantes/ListadoEstudiantes");
             Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
             response = invocationBuilder.get();
 
             if (response.getStatus() != 200) {
-                System.out.println("Error al obtener la lista de estudiantes. Código de estado: " + response.getStatus());
-            } else {
+                System.out.println("Error al obtener la lista de estudiantes. " + response.getStatus());
+            }
                 responseJson = response.readEntity(String.class);
                 lista = objectMapper.readValue(responseJson, new TypeReference<List<Estudiantes>>() {});
-            }
+           
         } catch (Exception e) {
             System.out.println("Error al procesar la solicitud: " + e.getMessage());
         }
@@ -48,7 +48,7 @@ public class EstudiantesDao {
     // Método para registrar un nuevo estudiante
     public void RegistrarEstudiante(Estudiantes estudiante) {
         Client cliente = ClientBuilder.newClient();
-        WebTarget webTarget = cliente.target(BASE_URL + "/RegistrarEsutudiante");
+        WebTarget webTarget = cliente.target("http://localhost:8080/GestionNotasService/Estudiantes/ModuloEstudiantes/RegistrarEsutudiante");
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
@@ -58,7 +58,7 @@ public class EstudiantesDao {
             if (response.getStatus() == 200) {
                 System.out.println("Estudiante registrado exitosamente.");
             } else {
-                System.out.println("Error al registrar el estudiante. Código de estado: " + response.getStatus());
+                System.out.println("Error al registrar el estudiante." + response.getStatus());
             }
         } catch (Exception e) {
             System.out.println("Error al procesar la solicitud: " + e.getMessage());
@@ -68,34 +68,34 @@ public class EstudiantesDao {
     // Método para buscar un estudiante por su código
     public Estudiantes BuscarEstudiante(int cod) {
         Client cliente = ClientBuilder.newClient();
-        WebTarget webTarget = cliente.target(BASE_URL + "/BuscarEstudiante/" + cod);
-        Estudiantes estudiante = null;
-        ObjectMapper objectMapper = new ObjectMapper();
+        WebTarget webTarget = cliente.target("http://localhost:8080/GestionNotasService/Estudiantes/ModuloEstudiantes/BuscarEstudiante/" + cod);
 
         try {
-            Response response = webTarget.request(MediaType.APPLICATION_JSON).get();
+            Response response = webTarget.request().get();
 
             if (response.getStatus() == 200) {
                 String responseJson = response.readEntity(String.class);
-                estudiante = objectMapper.readValue(responseJson, Estudiantes.class);
+                ObjectMapper objectMapper = new ObjectMapper();
+                return objectMapper.readValue(responseJson, Estudiantes.class);
             } else {
-                System.out.println("Error al buscar el estudiante. Código de estado: " + response.getStatus());
+                System.out.println("Error al buscar el estudiante." + response.getStatus());
+                return null;
             }
         } catch (Exception e) {
             System.out.println("Error al procesar la solicitud: " + e.getMessage());
+            return null;
         }
-        return estudiante;
     }
 
     // Método para actualizar un estudiante existente
     public void ActualizarEstudiante(Estudiantes estudiante) {
         Client cliente = ClientBuilder.newClient();
-        WebTarget webTarget = cliente.target(BASE_URL + "/ActualizarEstudiantes");
+        WebTarget webTarget = cliente.target("http://localhost:8080/GestionNotasService/Estudiantes/ModuloEstudiantes/ActualizarEstudiantes");
 
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             String estudianteJson = objectMapper.writeValueAsString(estudiante);
-            Response response = webTarget.request(MediaType.APPLICATION_JSON).put(Entity.json(estudianteJson));
+            Response response = webTarget.request().put(Entity.json(estudianteJson));
 
             if (response.getStatus() == 200) {
                 System.out.println("Estudiante actualizado exitosamente.");
