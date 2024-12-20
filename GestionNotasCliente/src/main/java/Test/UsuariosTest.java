@@ -21,17 +21,17 @@ public class UsuariosTest {
 		    }
 		}
 		*/
-		 String usuario = "admin";
+		 	String usuario = "admin";
 	        String password = "123456";
 
-	        // Llamamos al método de iniciar sesión
+	        // Llamamos al mï¿½todo de iniciar sesiï¿½n
 	        boolean sessionIniciada = usuariosDao.IniciarSession(usuario, password);
 
 	        // Comprobamos el resultado
 	        if (sessionIniciada) {
-	            System.out.println("Inicio de sesión exitoso.");
+	            System.out.println("Inicio de sesiï¿½n exitoso.");
 	        } else {
-	            System.out.println("Error en el inicio de sesión.");
+	            System.out.println("Error en el inicio de sesiï¿½n.");
 	        }
 	}
 

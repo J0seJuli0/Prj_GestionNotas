@@ -56,7 +56,7 @@ public class EstudiantesImplement implements EstudiantesInterface{
 	        if (est.getGenero().equals("M") || est.getGenero().equals("F") || est.getGenero().equals("Otro")) {
 	            ps.setString(4, est.getGenero());
 	        } else {
-	            throw new SQLException("Valor de género no válido");
+	            throw new SQLException("Valor de gï¿½nero no vï¿½lido");
 	        }
 
 	        ps.setString(5, est.getDireccion());
@@ -110,32 +110,43 @@ public class EstudiantesImplement implements EstudiantesInterface{
 	}
 
 	public List<Estudiantes> ListarEstudiantes() {
-		String sql = "SELECT * FROM estudiantes";
-		PreparedStatement ps = null;
-		ResultSet rs= null;
-		List<Estudiantes> listado = new ArrayList<Estudiantes>();
-		try {
-			ps = ClassConnection.conectarMySQL().prepareStatement(sql);
-			rs=ps.executeQuery();
-			while (rs.next()) {
-				Estudiantes estu = new Estudiantes();
-				estu.setIdEstudiante(rs.getInt(1));
-				estu.setNombre(rs.getString(2));
-				estu.setDni(rs.getString(3));
-				estu.setFechaNacimiento(rs.getDate(4));
-				estu.setGenero(rs.getString(5));
-				estu.setDireccion(rs.getString(6));
-				estu.setTelefono(rs.getString(7));
-				estu.setCorreo(rs.getString(8));
-				Padre pad = new Padre();
-				pad.setIdPadre(rs.getInt(9));
-				estu.setPadre(pad);
-				listado.add(estu);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return listado;
+	    String sql = "SELECT e.id_estudiante, e.nombre, e.dni, e.fecha_nacimiento, e.genero, e.direccion, e.telefono, e.correo, p.nombre " +
+	                 "FROM estudiantes e " +
+	                 "LEFT JOIN padres p ON e.id_padre = p.id_padre";
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    List<Estudiantes> listado = new ArrayList<Estudiantes>();
+	    try {
+	        ps = ClassConnection.conectarMySQL().prepareStatement(sql);
+	        rs = ps.executeQuery();
+	        while (rs.next()) {
+	            Estudiantes estu = new Estudiantes();
+	            estu.setIdEstudiante(rs.getInt(1));  
+	            estu.setNombre(rs.getString(2));   
+	            estu.setDni(rs.getString(3));      
+	            estu.setFechaNacimiento(rs.getDate(4));
+	            estu.setGenero(rs.getString(5));  
+	            estu.setDireccion(rs.getString(6)); // direccion
+	            estu.setTelefono(rs.getString(7));  // telefono
+	            estu.setCorreo(rs.getString(8));    // correo
+	            
+	            Padre pad = new Padre();
+	            pad.setNombre(rs.getString(9));     // nombre del padre
+	            estu.setPadre(pad);
+
+	            listado.add(estu);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	        } catch (SQLException ex) {
+	            ex.printStackTrace();
+	        }
+	    }
+	    return listado;
 	}
 
 }

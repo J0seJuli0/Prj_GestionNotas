@@ -63,12 +63,12 @@ public class TestEstudiantes {
             System.out.println("Nombre: " + estudianteEncontrado.getNombre());
             System.out.println("DNI: " + estudianteEncontrado.getDni());
             System.out.println("Fecha de nacimiento: " + estudianteEncontrado.getFechaNacimiento());
-            System.out.println("Género: " + estudianteEncontrado.getGenero());
-            System.out.println("Dirección: " + estudianteEncontrado.getDireccion());
-            System.out.println("Teléfono: " + estudianteEncontrado.getTelefono());
+            System.out.println("Gï¿½nero: " + estudianteEncontrado.getGenero());
+            System.out.println("Direcciï¿½n: " + estudianteEncontrado.getDireccion());
+            System.out.println("Telï¿½fono: " + estudianteEncontrado.getTelefono());
             System.out.println("Correo: " + estudianteEncontrado.getCorreo());
         } else {
-            System.out.println("No se encontró el estudiante.");
+            System.out.println("No se encontrï¿½ el estudiante.");
         }
         */
         
@@ -84,11 +84,11 @@ public class TestEstudiantes {
                 System.out.println("Nombre: " + est.getNombre());
                 System.out.println("DNI: " + est.getDni());
                 System.out.println("Fecha de nacimiento: " + est.getFechaNacimiento());
-                System.out.println("Género: " + est.getGenero());
-                System.out.println("Dirección: " + est.getDireccion());
-                System.out.println("Teléfono: " + est.getTelefono());
+                System.out.println("GÃ©nero: " + est.getGenero());
+                System.out.println("DirecciÃ³n: " + est.getDireccion());
+                System.out.println("TelÃ©fono: " + est.getTelefono());
                 System.out.println("Correo: " + est.getCorreo());
-                System.out.println("ID Padre: " + est.getPadre().getIdPadre());
+                System.out.println("Nombre del Padre: " + (est.getPadre() != null ? est.getPadre().getNombre() : "Sin asignar"));
                 System.out.println("----------------------------------");
             }
         } else {
